@@ -31,6 +31,10 @@ public class BemController {
 
     private final BemService bemService;
 
+    public BemController() {
+        bemService = null;
+    }
+
     @GetMapping
     @Operation(summary = "Listar bens", description = "Lista todos os bens do usuário autenticado")
     public ResponseEntity<Page<Bem>> listarBens(
@@ -61,8 +65,8 @@ public class BemController {
     @GetMapping("/periodo")
     @Operation(summary = "Buscar bens por período", description = "Busca bens por período de aquisição")
     public ResponseEntity<List<Bem>> buscarBensPorPeriodo(
-            @RequestParam LocalDate inicio,
-            @RequestParam LocalDate fim,
+            @RequestParam String inicio,
+            @RequestParam String fim,
             @AuthenticationPrincipal Usuario usuario) {
         List<Bem> bens = bemService.buscarBensPorPeriodo(usuario.getId(), inicio, fim, usuario.getId());
         return ResponseEntity.ok(bens);

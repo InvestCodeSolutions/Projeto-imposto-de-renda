@@ -3,12 +3,14 @@ package com.declaraja.api.controller;
 import com.declaraja.api.model.Usuario;
 import com.declaraja.api.service.AnaliseService;
 import com.declaraja.api.service.RelatorioService;
+import com.declaraja.api.service.AutorizacaoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -23,8 +25,9 @@ import java.util.Map;
 @SecurityRequirement(name = "bearerAuth")
 public class RelatorioController {
 
-    private final RelatorioService relatorioService;
-    private final AnaliseService analiseService;
+    private RelatorioService relatorioService;
+    private AnaliseService analiseService;
+    private AutorizacaoService autorizacaoService;
 
     @GetMapping("/cliente/{clienteId}/gerar-pdf")
     @Operation(summary = "Gerar relatório PDF", description = "Gera um relatório PDF com informações do cliente")

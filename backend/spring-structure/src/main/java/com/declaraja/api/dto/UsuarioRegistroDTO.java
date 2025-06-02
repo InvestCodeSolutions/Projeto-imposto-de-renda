@@ -27,6 +27,20 @@ public class UsuarioRegistroDTO {
 
     @NotNull(message = "Tipo de usuário é obrigatório")
     private Usuario.TipoUsuario tipo;
-    
-    private boolean enable2FA = false;
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public Usuario.TipoUsuario getTipo() {
+        return this.tipo;
+    }
+
+    public CharSequence getSenha() {
+        return this.senha;
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
 }

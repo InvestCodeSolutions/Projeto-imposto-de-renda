@@ -26,6 +26,10 @@ public class ContadorController {
 
     private final AutorizacaoService autorizacaoService;
 
+    public ContadorController() {
+        autorizacaoService = null;
+    }
+
     @GetMapping("/clientes")
     @Operation(summary = "Listar clientes", description = "Lista todos os clientes autorizados do contador")
     @PreAuthorize("hasRole('CONTADOR')")

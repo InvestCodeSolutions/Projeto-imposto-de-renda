@@ -37,15 +37,51 @@ public class Usuario {
 
     private boolean ativo = true;
 
-    private boolean using2FA = false;
-    
-    private String secret2FA;
-
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Bem> bens = new ArrayList<>();
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DocumentoFiscal> documentosFiscais = new ArrayList<>();
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public String getTipo() {
+        return String.valueOf(this.tipo);
+    }
+
+    public void setAtivo(boolean b) {
+        this.ativo = b;
+    }
+
+    public void setTipo(TipoUsuario tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setSenha(String encode) {
+        this.senha = encode;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
+
+    public String getSenha() {
+        return this.senha;
+    }
 
     public enum TipoUsuario {
         CLIENTE, CONTADOR

@@ -10,6 +10,30 @@ import lombok.NoArgsConstructor;
 public class JwtResponseDTO {
     private String token;
     private String refreshToken;
-    private boolean requires2FA;
-    private String qrCodeUrl;
+    private String email;
+    private String nome;
+
+    public void setToken(String jwt) {
+        this.token = jwt;
+    }
+
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
 }

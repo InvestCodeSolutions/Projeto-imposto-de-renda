@@ -35,6 +35,26 @@ public class Autorizacao {
 
     private LocalDateTime dataResposta;
 
+    public void setCliente(Usuario cliente) {
+        this.cliente = cliente;
+    }
+
+    public void setContador(Usuario contador) {
+        this.contador = contador;
+    }
+
+    public void setStatus(StatusAutorizacao statusAutorizacao) {
+        this.status = statusAutorizacao;
+    }
+
+    public StatusAutorizacao getStatus() {
+        return this.status;
+    }
+
+    public Usuario getContador() {
+        return this.contador;
+    }
+
     public enum StatusAutorizacao {
         PENDENTE,
         APROVADO,
