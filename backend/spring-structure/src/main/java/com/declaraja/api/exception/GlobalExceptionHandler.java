@@ -23,14 +23,14 @@ public class GlobalExceptionHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
-    // 🔥 Erros de entidade não encontrada (Ex.: findById)
+    // Erros de entidade não encontrada (Ex.: findById)
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<Map<String, Object>> handleEntityNotFoundException(EntityNotFoundException ex) {
         logger.error("[EntityNotFoundException] {}", ex.getMessage(), ex);
         return buildResponse(HttpStatus.NOT_FOUND, "Recurso não encontrado", ex.getMessage());
     }
 
-    // 🔑 Erros relacionados ao JWT
+    // Erros relacionados ao JWT
     @ExceptionHandler({
             ExpiredJwtException.class,
             MalformedJwtException.class,
@@ -42,14 +42,14 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.UNAUTHORIZED, "Token JWT inválido ou expirado", ex.getMessage());
     }
 
-    // 🔐 Erros de acesso negado
+    // Erros de acesso negado
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<Map<String, Object>> handleAccessDeniedException(AccessDeniedException ex) {
         logger.error("[AccessDeniedException] {}", ex.getMessage(), ex);
         return buildResponse(HttpStatus.FORBIDDEN, "Acesso negado", ex.getMessage());
     }
 
-    // 🛑 Validações de parâmetros (@Valid)
+    // Validações de parâmetros (@Valid)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, Object>> handleValidationException(MethodArgumentNotValidException ex) {
         logger.error("[ValidationException] {}", ex.getMessage(), ex);
@@ -68,14 +68,14 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
     }
 
-    // ⚠️ Qualquer outra exceção não tratada
+    // Qualquer outra exceção não tratada
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleAllUncaughtException(Exception ex) {
         logger.error("[UnhandledException] Erro não tratado: {}", ex.getMessage(), ex);
         return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Erro interno no servidor", ex.getMessage());
     }
 
-    // 🧠 Método utilitário para gerar respostas padronizadas
+    // Metodo utilitario para gerar respostas padronizadas
     private ResponseEntity<Map<String, Object>> buildResponse(HttpStatus status, String error, String message) {
         Map<String, Object> body = new HashMap<>();
         body.put("timestamp", LocalDateTime.now());
